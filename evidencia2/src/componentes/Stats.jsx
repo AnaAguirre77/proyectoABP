@@ -1,7 +1,7 @@
 function Stats(props) {
   return (
     <div className="p-4 text-black font-bold">
-      <h2 className="text-xl text-pink-700">Estadísticas</h2>
+      <h2 className="text-xl text-pink-700">Estadísticas.</h2>
       <p>
         Producto más caro: {props.maxTitulo}, ${props.max}
       </p>
