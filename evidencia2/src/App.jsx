@@ -32,7 +32,6 @@ function App() {
       <h1 className="text-2xl text-center mb-6 text-black font-semibold">
         Evidencia 2.
       </h1>
-
       <input
         type="text"
         placeholder="Buscar producto"
@@ -40,8 +39,14 @@ function App() {
         onChange={(e) => setSearch(e.target.value)}
         className="block mx-auto p-2 mb-4 pink rounded"
       />
-
       <ProductList products={filteredProducts} />
+
+      {/* renderizacion condicional */}
+      {filteredProducts.length === 0 && (
+        <div className="text-center mt-4 text-red-600">
+          No se encontraron productos!
+        </div>
+      )}
 
       <StatsPanel
         max={max}
