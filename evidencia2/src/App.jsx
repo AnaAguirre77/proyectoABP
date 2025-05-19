@@ -28,16 +28,16 @@ function App() {
   const precioTotal = filteredProducts.reduce((acc, p) => acc + p.price, 0);
 
   return (
-    <div className="bg-pink-100">
+    <div className="bg-pink-100 min-h-screen py-8 px-4">
       <h1 className="text-2xl text-center mb-6 text-black font-semibold">
-        Evidencia 2.
+        Evidencia número 2.
       </h1>
       <input
         type="text"
-        placeholder="Buscar producto"
+        placeholder="Buscar un producto..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="block mx-auto p-2 mb-4 pink rounded"
+        className="block mx-auto p-2 mb-6 rounded border border-pink-300 shadow-sm focus:outline-none focus:ring focus:border-pink-400"
       />
       <ProductList products={filteredProducts} />
 
