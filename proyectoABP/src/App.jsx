@@ -7,10 +7,11 @@ import StatsPanel from "./componentes/StatsPanel";
 function App() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [show, setShow] = useState(true);
 
   // conexion con la API
   useEffect(() => {
-    axios.get("https://dummyjson.com/products?limit=30").then((res) => {
+    axios.get("https://dummyjson.com/products?limit=100").then((res) => {
       setProducts(res.data.products);
     });
   }, []);
@@ -28,16 +29,16 @@ function App() {
   const precioTotal = filteredProducts.reduce((acc, p) => acc + p.price, 0);
 
   return (
-    <div className="bg-pink-100 min-h-screen py-8 px-4">
-      <h1 className="text-2xl text-center mb-6 text-black font-semibold">
-        Evidencia número 2.
+    <div className="bg-[#D0F0FD] min-h-screen py-8 px-4">
+      <h1 className="text-2xl text-center mb-6 text-[#4A90E2] font-semibold">
+        tienda online de productos 🛍️
       </h1>
       <input
         type="text"
         placeholder="Buscar un producto..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="block mx-auto p-2 mb-6 rounded border border-pink-300 shadow-sm focus:outline-none focus:ring focus:border-pink-400"
+        className="block mx-auto p-2 mb-6 rounded border-[#B5DFF7] shadow-sm focus:outline-none focus:ring focus:border-[#A0D8EF]"
       />
       <ProductList products={filteredProducts} />
 
@@ -48,13 +49,21 @@ function App() {
         </div>
       )}
 
-      <StatsPanel
-        max={max}
-        min={min}
-        maxTitulo={maxTitulo}
-        minTitulo={minTitulo}
-        precioTotal={precioTotal}
-      />
+      <button
+        onClick={() => setShow(!show)}
+        className="mt-4 px-4 py-2 text-[#4A90E2] border rounded hover:bg-[#EAF8FE] transition"
+      >
+        {show ? "Ocultar estadísticas" : "Mostrar estadísticas"}
+      </button>
+      {show && (
+        <StatsPanel
+          max={max}
+          min={min}
+          maxTitulo={maxTitulo}
+          minTitulo={minTitulo}
+          precioTotal={precioTotal}
+        />
+      )}
     </div>
   );
 }
